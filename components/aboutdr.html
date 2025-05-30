@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fertility Clinic - About Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .fertility-about-section {
+      padding: 30px 0;
+      background: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fertility-about-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.ibb.co/0jqWYdN/watercolor-texture.png') no-repeat;
+      background-size: cover;
+      opacity: 0.03;
+      z-index: 0;
+    }
+
+    .fertility-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .fertility-section-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .fertility-section-subtitle {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      color: #2a7fcc;
+      font-weight: 600;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .fertility-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      color: #003366;
+      font-weight: 600;
+      margin-bottom: 20px;
+      line-height: 1.3;
+      position: relative;
+      display: inline-block;
+    }
+
+    .fertility-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #2a7fcc, #00b4d8);
+      border-radius: 2px;
+    }
+
+    .fertility-section-description {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 18px;
+      color: #4a5568;
+      line-height: 1.7;
+    }
+
+    .fertility-features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .fertility-feature-card {
+      background: white;
+      border-radius: 16px;
+      padding: 40px 30px;
+      box-shadow: 0 15px 30px rgba(0, 91, 150, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: 1px solid rgba(42, 127, 204, 0.1);
+    }
+
+    .fertility-feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(42, 127, 204, 0.03) 0%, rgba(0, 180, 216, 0.03) 100%);
+      z-index: -1;
+    }
+
+    .fertility-feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 91, 150, 0.15);
+    }
+
+    .fertility-feature-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #e6f2ff 0%, #d1e7ff 100%);
+      border-radius: 50%;
+      color: #2a7fcc;
+      font-size: 32px;
+      position: relative;
+    }
+
+    .fertility-feature-icon::after {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border: 2px dashed rgba(42, 127, 204, 0.3);
+      border-radius: 50%;
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .fertility-feature-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #003366;
+      margin-bottom: 15px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .fertility-feature-description {
+      font-size: 16px;
+      color: #4a5568;
+      line-height: 1.7;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .fertility-learn-more {
+      display: inline-block;
+      margin: 0 auto;
+      padding: 8px 20px;
+      background: transparent;
+      color: #2a7fcc;
+      border: 1px solid #2a7fcc;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .fertility-feature-card:hover .fertility-learn-more {
+      background: linear-gradient(90deg, #2a7fcc, #00b4d8);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 5px 15px rgba(42, 127, 204, 0.3);
+    }
+    .fertility-feature-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.fertility-feature-description {
+  flex-grow: 1; /* pushes the button to bottom */
+}
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .fertility-section-title {
+        font-size: 36px;
+      }
+
+      .fertility-features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .fertility-about-section {
+        padding: 60px 0;
+      }
+
+      .fertility-section-title {
+        font-size: 32px;
+      }
+
+      .fertility-section-description {
+        font-size: 16px;
+      }
+
+      .fertility-feature-card {
+        padding: 30px 25px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .fertility-section-header {
+        margin-bottom: 40px;
+      }
+
+      .fertility-section-title {
+        font-size: 28px;
+      }
+
+      .fertility-section-subtitle {
+        font-size: 16px;
+      }
+
+      .fertility-features-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fertility About Section -->
+  <section class="fertility-about-section">
+    <div class="fertility-container">
+      <div class="fertility-section-header">
+        <h2 class="fertility-section-title">Leaders in Fertility Treatments & Researches</h2>
+      </div>
+      
+      <div class="fertility-features-grid">
+        <div class="fertility-feature-card">
+          <div class="fertility-feature-icon">
+            <i class="fas fa-user-md"></i>
+          </div>
+          <h3 class="fertility-feature-title">Clinical Excellence Delivering Highest Pregnancy Success Rates</h3>
+          <p class="fertility-feature-description">
+            Experienced, World-Renowned Doctors & Embryologists<br>
+            Personalized treatments for male and female infertility, genetic testing<br>
+            Over 71% Pregnancy Rate (without egg or sperm donation)
+          </p>
+          <a href="#" class="fertility-learn-more">Learn More</a>
+        </div>
+
+        <div class="fertility-feature-card">
+          <div class="fertility-feature-icon">
+            <i class="fas fa-hospital"></i>
+          </div>
+          <h3 class="fertility-feature-title">The Most Advanced Technology and Infrastructure</h3>
+          <p class="fertility-feature-description">
+            AI-enabled incubators, microscopes, 4D Ultrasound machines<br>
+            Facilities include clean rooms, embryology/genetics lab, and air-handling units for embryo safety
+          </p>
+          <a href="#" class="fertility-learn-more">Learn More</a>
+        </div>
+
+        <div class="fertility-feature-card">
+          <div class="fertility-feature-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h3 class="fertility-feature-title">Science and Innovation</h3>
+          <p class="fertility-feature-description">
+            Proprietary research & techniques that boost outcomes<br>
+            Peer-reviewed publications in top international journals
+          </p>
+          <a href="#" class="fertility-learn-more">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

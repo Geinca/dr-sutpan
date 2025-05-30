@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertility Treatments</title>
+    <style>
+        /* Main Container Styles */
+        .fertility-services-container {
+            font-family: 'Arial', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4z0px 20px;
+            background-color: white;
+        }
+        
+        .fertility-header-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .fertility-main-title {
+            color: #5d4a9d;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .fertility-subtitle {
+            color: #777;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Treatment Cards Container */
+        .treatment-options-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        /* Individual Treatment Cards */
+        .fertility-treatment-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(93, 74, 157, 0.1);
+            width: 350px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+            
+        }
+        
+        .fertility-treatment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(93, 74, 157, 0.15);
+        }
+        
+        .treatment-image-holder {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .female-treatment-img {
+            background-image: linear-gradient(rgba(93, 74, 157, 0.4), rgba(93, 74, 157, 0.4)), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+        }
+        
+        .male-treatment-img {
+            background-image: linear-gradient(rgba(46, 125, 139, 0.4), rgba(46, 125, 139, 0.4)), url('https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+        }
+        
+        .treatment-content-area {
+            padding: 25px;
+            display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+        }
+        
+        .treatment-type-title {
+            color: #5d4a9d;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+            
+        }
+        
+        .female-treatment .treatment-type-title {
+            color: #5d4a9d;
+        }
+        
+        .male-treatment .treatment-type-title {
+            color: #2e7d8b;
+        }
+        
+        .treatment-type-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: currentColor;
+        }
+        
+        .treatment-description-text {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        
+        .treatment-learn-more-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid;
+        }
+        
+        .female-treatment .treatment-learn-more-btn {
+            color: #5d4a9d;
+            border-color: #5d4a9d;
+            background-color: rgba(93, 74, 157, 0.1);
+        }
+        
+        .male-treatment .treatment-learn-more-btn {
+            color: #2e7d8b;
+            border-color: #2e7d8b;
+            background-color: rgba(46, 125, 139, 0.1);
+        }
+        
+        .female-treatment .treatment-learn-more-btn:hover {
+            background-color: #5d4a9d;
+            color: white;
+        }
+        
+        .male-treatment .treatment-learn-more-btn:hover {
+            background-color: #2e7d8b;
+            color: white;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .treatment-options-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .fertility-treatment-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="fertility-services-container">
+        <div class="fertility-header-section">
+            <h2 class="fertility-main-title">Couple Infertility Treatments</h2>
+            <p class="fertility-subtitle">Once the exact cause of infertility is diagnosed, the chances of a successful pregnancy increase dramatically with our specialized treatments.</p>
+        </div>
+        
+        <div class="treatment-options-wrapper">
+            <!-- Female Treatment Card -->
+            <div class="fertility-treatment-card female-treatment">
+                <div class="treatment-image-holder female-treatment-img"></div>
+                <div class="treatment-content-area">
+                    <h3 class="treatment-type-title">Female Fertility Treatments</h3>
+                    <p class="treatment-description-text">Our comprehensive female fertility treatments range from medication administration to surgical interventions, all tailored to address the specific cause of infertility and maximize your chances of successful pregnancy.</p>
+                    <a href="#" class="treatment-learn-more-btn">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- Male Treatment Card -->
+            <div class="fertility-treatment-card male-treatment">
+                <div class="treatment-image-holder male-treatment-img"></div>
+                <div class="treatment-content-area">
+                    <h3 class="treatment-type-title">Male Fertility Treatments</h3>
+                    <p class="treatment-description-text">We offer advanced male fertility solutions including pharmaceutical treatments and surgical options, all designed to precisely target the root cause of infertility and significantly improve pregnancy success rates.</p>
+                    <a href="#" class="treatment-learn-more-btn">Learn More</a>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="fertility-treatment-card male-treatment">
+                <div class="treatment-image-holder male-treatment-img"></div>
+                <div class="treatment-content-area">
+                    <h3 class="treatment-type-title">couple Fertility Treatments</h3>
+                    <p class="treatment-description-text">Once the exact cause of infertility in a female/male is diagnosed the chances of a successful pregnancy increases dramatically.  </p>
+                    <a href="#" class="treatment-learn-more-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

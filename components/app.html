@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Appointment Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      /* Booking Section Styles */
+.fertility-booking-section {
+  background-color: #f9f5ff;
+  padding: 80px 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.fertility-booking-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.fertility-booking-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.fertility-booking-title {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.fertility-booking-subtitle {
+  color: #8e44ad;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.fertility-booking-card {
+  display: flex;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.fertility-booking-image {
+  flex: 1;
+  background-color: #f0e5ff;
+}
+
+.fertility-booking-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fertility-booking-form {
+  flex: 1;
+  padding: 40px;
+}
+
+#fertilityAppointmentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fertility-form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.fertility-form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fertility-form-group label {
+  color: #2c3e50;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.fertility-form-group input,
+.fertility-form-group select,
+.fertility-form-group textarea {
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.fertility-form-group input:focus,
+.fertility-form-group select:focus,
+.fertility-form-group textarea:focus {
+  border-color: #8e44ad;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.1);
+}
+
+.fertility-form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.fertility-form-submit {
+  margin-top: 10px;
+}
+
+.fertility-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #8e44ad;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.fertility-submit-btn:hover {
+  background-color: #7d3c98;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(142, 68, 173, 0.3);
+}
+
+.fertility-submit-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.fertility-submit-btn:hover svg {
+  transform: translateX(3px);
+}
+
+.fertility-booking-footer {
+  margin-top: 40px;
+}
+
+.fertility-contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.fertility-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #2c3e50;
+  font-size: 0.95rem;
+}
+
+.fertility-contact-item svg {
+  width: 18px;
+  height: 18px;
+  color: #8e44ad;
+}
+
+.fertility-booking-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background-color: #f0e5ff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.fertility-booking-note svg {
+  width: 24px;
+  height: 24px;
+  color: #8e44ad;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.fertility-booking-note p {
+  color: #2c3e50;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 992px) {
+  .fertility-booking-card {
+    flex-direction: column;
+  }
+  
+  .fertility-booking-image {
+    height: 250px;
+  }
+  
+  .fertility-booking-form {
+    padding: 30px;
+  }
+  
+  .fertility-contact-info {
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .fertility-booking-section {
+    padding: 60px 0;
+  }
+  
+  .fertility-booking-title {
+    font-size: 2rem;
+  }
+  
+  .fertility-booking-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .fertility-form-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .fertility-contact-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fertility-booking-title {
+    font-size: 1.8rem;
+  }
+  
+  .fertility-booking-form {
+    padding: 25px;
+  }
+  
+  .fertility-booking-note {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .fertility-booking-note svg {
+    margin-bottom: 10px;
+  }
+}
+    </style>
+</head>
+<body>
+    <section class="fertility-booking-section">
+        <div class="fertility-booking-container">
+          <div class="fertility-booking-header">
+            <h2 class="fertility-booking-title">Schedule Your Consultation</h2>
+            <p class="fertility-booking-subtitle">Begin your fertility journey with our expert team</p>
+          </div>
+          
+          <div class="fertility-booking-card">
+            <div class="fertility-booking-image">
+              <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Doctor consultation">
+            </div>
+            
+            <div class="fertility-booking-form">
+              <form id="fertilityAppointmentForm">
+                <div class="fertility-form-group">
+                  <label for="fertility-service">Service Needed</label>
+                  <select id="fertility-service" name="service" required>
+                    <option value="" disabled selected>Select a service</option>
+                    <option value="ivf">IVF Treatment</option>
+                    <option value="iui">IUI Treatment</option>
+                    <option value="egg-freezing">Egg Freezing</option>
+                    <option value="testing">Fertility Testing</option>
+                    <option value="consultation">Initial Consultation</option>
+                    <option value="follow-up">Follow-up Visit</option>
+                  </select>
+                </div>
+                
+                <div class="fertility-form-row">
+                  <div class="fertility-form-group">
+                    <label for="fertility-first-name">First Name</label>
+                    <input type="text" id="fertility-first-name" name="first_name" required>
+                  </div>
+                  
+                  <div class="fertility-form-group">
+                    <label for="fertility-last-name">Last Name</label>
+                    <input type="text" id="fertility-last-name" name="last_name" required>
+                  </div>
+                </div>
+                
+                <div class="fertility-form-row">
+                  <div class="fertility-form-group">
+                    <label for="fertility-email">Email</label>
+                    <input type="email" id="fertility-email" name="email" required>
+                  </div>
+                  
+                  <div class="fertility-form-group">
+                    <label for="fertility-phone">Phone</label>
+                    <input type="tel" id="fertility-phone" name="phone" required>
+                  </div>
+                </div>
+                
+                <div class="fertility-form-row">
+                  <div class="fertility-form-group">
+                    <label for="fertility-date">Preferred Date</label>
+                    <input type="date" id="fertility-date" name="date" required>
+                  </div>
+                  
+                  <div class="fertility-form-group">
+                    <label for="fertility-time">Preferred Time</label>
+                    <select id="fertility-time" name="time" required>
+                      <option value="" disabled selected>Select time</option>
+                      <option value="morning">Morning (8am-12pm)</option>
+                      <option value="afternoon">Afternoon (12pm-4pm)</option>
+                      <option value="evening">Evening (4pm-7pm)</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="fertility-form-group">
+                  <label for="fertility-message">Special Requests or Notes</label>
+                  <textarea id="fertility-message" name="message" rows="3"></textarea>
+                </div>
+                
+                <div class="fertility-form-submit">
+                  <button type="submit" class="fertility-submit-btn">
+                    <span>Book Appointment</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          
+          <div class="fertility-booking-footer">
+            <div class="fertility-contact-info">
+              <div class="fertility-contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>3rd Floor, REGAL PLAZA, GT ROAD, USHAGRAM, MURGASOLE, PO, WEST, Asansol, West Bengal 713303, Asansol, India, West Bengal</span>
+              </div>
+              
+              <div class="fertility-contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>18003092323</span>
+              </div>
+              
+              <div class="fertility-contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>centerhead.asansol@indiraivf.in</span>
+              </div>
+            </div>
+            
+            <div class="fertility-booking-note">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <p>We'll contact you within 24 hours to confirm your appointment. For urgent requests, please call our office directly.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    <script>
+        // Set minimum date for appointment to today
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('appointmentDate').min = today;
+            
+            // Form submission handler
+            document.getElementById('healthBookingForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Here you would typically send the form data to a server
+                // For demo purposes, we'll just show an alert
+                alert('Appointment booked successfully! A confirmation has been sent to your email.');
+                
+                // Reset form
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>

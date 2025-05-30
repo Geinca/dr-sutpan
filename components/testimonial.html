@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Testimonials</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6c5ce7;
+      --text: #2d3436;
+      --light-bg: #f9f9f9;
+      --border: #dfe6e9;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: white;
+    }
+
+    .fertility-testimonial-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .testimonial-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .testimonial-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .testimonial-subtitle {
+      color: #636e72;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .fertility-testimonial-container {
+      display: flex;
+      gap: 2rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 1rem 0;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .fertility-testimonial-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .fertility-testimonial-card {
+      min-width: 300px;
+      scroll-snap-align: start;
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+      border: 1px solid var(--border);
+    }
+
+    .fertility-feedback-text {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .fertility-feedback-text:before {
+      content: '"';
+      font-size: 3rem;
+      color: var(--primary);
+      opacity: 0.2;
+      position: absolute;
+      top: -1rem;
+      left: -1rem;
+    }
+
+    .fertility-patient-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .patient-photo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+    }
+
+    .patient-details {
+      line-height: 1.4;
+    }
+
+    .patient-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .treatment-type {
+      font-size: 0.85rem;
+      color: #636e72;
+    }
+
+    .rating {
+      color: #fdcb6e;
+      margin-top: 0.3rem;
+    }
+
+    @media (min-width: 768px) {
+      .fertility-testimonial-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        overflow-x: initial;
+      }
+
+      .fertility-testimonial-card {
+        min-width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="fertility-testimonial-section">
+    <div class="testimonial-header">
+      <h2 class="testimonial-title">Patient Stories</h2>
+      <p class="testimonial-subtitle">Hear from those who've experienced our care firsthand</p>
+    </div>
+
+    <div class="fertility-testimonial-container">
+      <!-- Testimonial 1 -->
+      <div class="fertility-testimonial-card">
+        <div class="fertility-feedback-text">
+          After years of struggling, the team gave us not just medical treatment but emotional support throughout our IVF journey. Today we're holding our miracle baby.
+        </div>
+        <div class="fertility-patient-info">
+          <!-- <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah J." class="patient-photo" /> -->
+          <div class="patient-details">
+            <div class="patient-name">Sarmista</div>
+            <div class="treatment-type">IVF Patient</div>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="fertility-testimonial-card">
+        <div class="fertility-feedback-text">
+          The personalized approach made all the difference. They never treated us like just another case number, but like family hoping for a miracle.
+        </div>
+        <div class="fertility-patient-info">
+          <!-- <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T." class="patient-photo" /> -->
+          <div class="patient-details">
+            <div class="patient-name">Rahul</div>
+            <div class="treatment-type">Fertility Treatment</div>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="fertility-testimonial-card">
+        <div class="fertility-feedback-text">
+          From the first consultation, we felt heard and understood. The doctors explained everything clearly and gave us realistic hope.
+        </div>
+        <div class="fertility-patient-info">
+          <!-- <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Priya K." class="patient-photo" /> -->
+          <div class="patient-details">
+            <div class="patient-name">Priya K.</div>
+            <div class="treatment-type">PCOS Treatment</div>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

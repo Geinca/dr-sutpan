@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Video Slider</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .vs-video-wrapper {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .vs-header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .vs-title-text {
+      font-size: 28px;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .vs-link-all {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #f0f0f0;
+      color: #333;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .vs-link-all:hover {
+      background-color: #e0e0e0;
+    }
+
+    .vs-slider-shell {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vs-slider-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      will-change: transform;
+    }
+
+    .vs-slide-card {
+      flex: 0 0 calc(100% - 20px);
+      margin: 0 10px;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .vs-slide-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .vs-iframe-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      overflow: hidden;
+    }
+
+    .vs-iframe-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .vs-card-details {
+      padding: 20px;
+    }
+
+    .vs-date {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .vs-heading {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .vs-desc {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 15px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .vs-watch-link {
+      display: inline-block;
+      color: #0066cc;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .vs-watch-link:hover {
+      text-decoration: underline;
+    }
+
+    .vs-nav-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .vs-nav-btn {
+      width: 40px;
+      height: 40px;
+      background-color: #000000;
+      border: none;
+      border-radius: 50%;
+      margin: 0 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: white;
+    }
+
+    .vs-nav-btn:hover {
+      background-color: #aa5a25;
+    }
+
+    .vs-nav-btn i {
+      font-size: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .vs-slide-card {
+        flex: 0 0 calc(50% - 20px);
+      }
+    }
+
+    @media (min-width: 992px) {
+      .vs-slide-card {
+        flex: 0 0 calc(33.333% - 20px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="vs-video-wrapper">
+    <div class="vs-header-flex">
+      <h2 class="vs-title-text">Featured Videos</h2>
+      <a href="videosection.html" class="vs-link-all">View All</a>
+    </div>
+
+    <div class="vs-slider-shell">
+      <div class="vs-slider-track">
+        <!-- Slide 1 -->
+        <div class="vs-slide-card">
+          <div class="vs-iframe-wrap">
+            <iframe width="560" height="315" src="https://www.youtube.com/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+          </div>
+          <!-- <div class="vs-card-details">
+            <div class="vs-date">May 15, 2023</div>
+            <h3 class="vs-heading">Understanding Kidney Stones: Causes & Prevention</h3>
+            <p class="vs-desc">Learn about the causes of kidney stones and effective prevention methods from our expert urologists.</p>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="vs-watch-link">Watch More</a>
+          </div> -->
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="vs-slide-card">
+          <div class="vs-iframe-wrap">
+           
+            <iframe width="560" height="315" src="https://www.youtube.com/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+          </div>
+          <!-- <div class="vs-card-details">
+            <div class="vs-date">June 2, 2023</div>
+            <h3 class="vs-heading">Laser Prostate Surgery Explained</h3>
+            <p class="vs-desc">See how laser technology is revolutionizing prostate surgery with minimal recovery time.</p>
+            <a href="https://www.youtube.com/watch?v=9bZkp7q19f0" target="_blank" class="vs-watch-link">Watch More</a>
+          </div> -->
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="vs-slide-card">
+          <div class="vs-iframe-wrap">
+            <iframe width="560" height="315" src="https://www.youtube.com/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+          </div>
+          <!-- <div class="vs-card-details">
+            <div class="vs-date">June 18, 2023</div>
+            <h3 class="vs-heading">UTI Prevention for Women</h3>
+            <p class="vs-desc">Essential tips and solutions for preventing urinary tract infections in women.</p>
+            <a href="https://www.youtube.com/watch?v=JGwWNGJdvx8" target="_blank" class="vs-watch-link">Watch More</a>
+          </div> -->
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="vs-slide-card">
+          <div class="vs-iframe-wrap">
+            <iframe width="560" height="315" src="https://www.youtube.com/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+          </div>
+          <!-- <div class="vs-card-details">
+            <div class="vs-date">July 5, 2023</div>
+            <h3 class="vs-heading">BPH Treatment Options</h3>
+            <p class="vs-desc">Comprehensive guide to treatment options for benign prostatic hyperplasia.</p>
+            <a href="https://www.youtube.com/watch?v=kJQP7kiw5Fk" target="_blank" class="vs-watch-link">Watch More</a>
+          </div> -->
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="vs-slide-card">
+          <div class="vs-iframe-wrap">
+            <iframe width="560" height="315" src="https://www.youtube.com/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+          </div>
+          <!-- <div class="vs-card-details">
+            <div class="vs-date">July 22, 2023</div>
+            <h3 class="vs-heading">Robotic Surgery in Urology</h3>
+            <p class="vs-desc">Discover the precision and benefits of robotic-assisted urological procedures.</p>
+            <a href="https://www.youtube.com/watch?v=OPf0YbXqDm0" target="_blank" class="vs-watch-link">Watch More</a>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="vs-nav-wrap">
+        <button class="vs-nav-btn vs-prev-btn"><i class="fas fa-arrow-left"></i></button>
+        <button class="vs-nav-btn vs-next-btn"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const slider = document.querySelector('.vs-slider-track');
+    const prevBtn = document.querySelector('.vs-prev-btn');
+    const nextBtn = document.querySelector('.vs-next-btn');
+    const videoCards = document.querySelectorAll('.vs-slide-card');
+    const iframes = document.querySelectorAll('.vs-slide-card iframe');
+
+    let currentIndex = 0;
+    let cardsToShow = 1;
+    let interval;
+
+    // Setup YouTube IFrame Player API
+    let players = [];
+
+    function createYouTubePlayers() {
+      iframes.forEach((iframe, index) => {
+        const player = new YT.Player(iframe, {
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+        players[index] = player;
+      });
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        clearInterval(interval); // Stop auto-slide
+        pauseOtherVideos(event.target); // Pause other videos
+      } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+        const anyPlaying = players.some(p => p.getPlayerState() === YT.PlayerState.PLAYING);
+        if (!anyPlaying) startAutoSlide(); // Resume auto-slide if no video is playing
+      }
+    }
+
+    function pauseOtherVideos(currentPlayer) {
+      players.forEach(player => {
+        if (player !== currentPlayer && player.getPlayerState() === YT.PlayerState.PLAYING) {
+          player.pauseVideo();
+        }
+      });
+    }
+
+    function updateCardsToShow() {
+      if (window.innerWidth >= 992) {
+        cardsToShow = 3;
+      } else if (window.innerWidth >= 768) {
+        cardsToShow = 2;
+      } else {
+        cardsToShow = 1;
+      }
+
+      if (currentIndex > videoCards.length - cardsToShow) {
+        currentIndex = 0;
+      }
+      updateSlider();
+    }
+
+    function updateSlider() {
+      const cardWidth = videoCards[0].offsetWidth + 20;
+      const translateX = -currentIndex * cardWidth;
+      slider.style.transform = `translateX(${translateX}px)`;
+
+      prevBtn.disabled = videoCards.length <= cardsToShow;
+      nextBtn.disabled = videoCards.length <= cardsToShow;
+    }
+
+    function goToNext() {
+      currentIndex++;
+      if (currentIndex > videoCards.length - cardsToShow) {
+        currentIndex = 0;
+      }
+      updateSlider();
+    }
+
+    function goToPrev() {
+      currentIndex--;
+      if (currentIndex < 0) {
+        currentIndex = videoCards.length - cardsToShow;
+      }
+      updateSlider();
+    }
+
+    nextBtn.addEventListener('click', function () {
+      clearInterval(interval);
+      goToNext();
+      startAutoSlide();
+    });
+
+    prevBtn.addEventListener('click', function () {
+      clearInterval(interval);
+      goToPrev();
+      startAutoSlide();
+    });
+
+    // function startAutoSlide() {
+    //   clearInterval(interval);
+    //   interval = setInterval(goToNext, 4000);
+    // }
+
+    const sliderWrapper = document.querySelector('.vs-slider-shell');
+    sliderWrapper.addEventListener('mouseenter', () => clearInterval(interval));
+    sliderWrapper.addEventListener('mouseleave', startAutoSlide);
+
+    updateCardsToShow();
+    window.addEventListener('resize', updateCardsToShow);
+    
+    // Load YouTube IFrame API
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // When API is ready, init players
+    window.onYouTubeIframeAPIReady = createYouTubePlayers;
+
+    // startAutoSlide();
+  });
+  </script>
+</body>
+</html>

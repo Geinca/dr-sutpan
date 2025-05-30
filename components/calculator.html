@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ovulation Predictor Calculator</title>
+    <style>
+        /* Background with overlay */
+        .calbody{
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(93, 74, 157, 0.85), rgba(93, 74, 157, 0.85)), 
+                        url('https://images.unsplash.com/photo-1579684453423-f84349ef60b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        /* Main Container Styles */
+        .fertility-calculator-container {
+            max-width: 550px;
+            margin: 30px;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        
+        .calculator-title {
+            color: #5d4a9d;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .calculator-subtitle {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Form Styles */
+        .calculator-form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: #5d4a9d;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .form-input {
+            width: 90%;
+            padding: 14px 20px;
+            border: 2px solid #e0d6f5;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #5d4a9d;
+            box-shadow: 0 0 0 3px rgba(93, 74, 157, 0.2);
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: #5d4a9d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(93, 74, 157, 0.3);
+        }
+        
+        .calculate-btn:hover {
+            background-color: #4a3a7d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(93, 74, 157, 0.4);
+        }
+        
+        .calculate-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* Results Section */
+        .results-container {
+            margin-top: 35px;
+            padding: 25px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(93, 74, 157, 0.1);
+            display: none;
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .results-title {
+            color: #5d4a9d;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .results-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #5d4a9d, #9d7ce8);
+            border-radius: 3px;
+        }
+        
+        .result-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0ebfa;
+            display: flex;
+            align-items: center;
+        }
+        
+        .result-label {
+            font-weight: 600;
+            color: #5d4a9d;
+            width: 150px;
+            font-size: 0.95rem;
+        }
+        
+        .result-value {
+            color: #2e7d8b;
+            font-weight: 600;
+            flex: 1;
+        }
+        
+        /* Decorative Elements */
+        .cycle-info {
+            background-color: #f5f2ff;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #666;
+            border-left: 4px solid #9d7ce8;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .fertility-calculator-container {
+                padding: 30px 20px;
+                margin: 20px 15px;
+            }
+            
+            .calculator-title {
+                font-size: 1.6rem;
+            }
+            
+            .result-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .result-label {
+                margin-bottom: 5px;
+                width: 100%;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="calbody">
+    <div class="fertility-calculator-container">
+        <div class="calculator-header">
+            <h2 class="calculator-title">Ovulation Predictor Calculator</h2>
+            <p class="calculator-subtitle">Discover your most fertile days to maximize your chances of conception</p>
+        </div>
+        
+        <div class="calculator-form">
+            <div class="calculator-form-group">
+                <label for="lastPeriod" class="form-label">First day of last menstrual period:</label>
+                <input type="date" id="lastPeriod" class="form-input" required>
+            </div>
+            
+            <div class="calculator-form-group">
+                <label for="cycleLength" class="form-label">Average length of your cycle (days):</label>
+                <input type="number" id="cycleLength" class="form-input" min="20" max="45" value="28" required>
+            </div>
+            
+            <button id="calculateBtn" class="calculate-btn">Calculate Fertile Window</button>
+            
+            <div class="cycle-info">
+                <strong>Tip:</strong> The average menstrual cycle is 28 days, but normal cycles range from 21 to 35 days.
+            </div>
+        </div>
+        
+        <div id="resultsContainer" class="results-container">
+            <h3 class="results-title">Your Fertility Results</h3>
+            <div class="result-item">
+                <span class="result-label">Next period starts:</span>
+                <span id="nextPeriod" class="result-value"></span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Ovulation date:</span>
+                <span id="ovulationDate" class="result-value"></span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Fertile window:</span>
+                <span id="fertileWindow" class="result-value"></span>
+            </div>
+            <div class="result-item" style="border-bottom: none;">
+                <span class="result-label">Best days to conceive:</span>
+                <span id="bestDays" class="result-value"></span>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        document.getElementById('calculateBtn').addEventListener('click', function() {
+            // Get input values
+            const lastPeriodDate = new Date(document.getElementById('lastPeriod').value);
+            const cycleLength = parseInt(document.getElementById('cycleLength').value);
+            
+            if (isNaN(lastPeriodDate.getTime()) || isNaN(cycleLength)) {
+                alert('Please enter valid values');
+                return;
+            }
+            
+            // Calculate dates
+            const nextPeriodDate = new Date(lastPeriodDate);
+            nextPeriodDate.setDate(nextPeriodDate.getDate() + cycleLength);
+            
+            const ovulationDate = new Date(nextPeriodDate);
+            ovulationDate.setDate(ovulationDate.getDate() - 14);
+            
+            const fertileStart = new Date(ovulationDate);
+            fertileStart.setDate(fertileStart.getDate() - 3);
+            
+            const fertileEnd = new Date(ovulationDate);
+            fertileEnd.setDate(fertileEnd.getDate() + 1);
+            
+            const bestDaysStart = new Date(ovulationDate);
+            bestDaysStart.setDate(bestDaysStart.getDate() - 1);
+            
+            // Format dates for display
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            
+            document.getElementById('nextPeriod').textContent = nextPeriodDate.toLocaleDateString('en-US', options);
+            document.getElementById('ovulationDate').textContent = ovulationDate.toLocaleDateString('en-US', options);
+            document.getElementById('fertileWindow').textContent = 
+                fertileStart.toLocaleDateString('en-US', {month: 'short', day: 'numeric'}) + " - " + 
+                fertileEnd.toLocaleDateString('en-US', {month: 'short', day: 'numeric'});
+            
+            document.getElementById('bestDays').textContent = 
+                bestDaysStart.toLocaleDateString('en-US', {month: 'short', day: 'numeric'}) + " and " + 
+                ovulationDate.toLocaleDateString('en-US', {month: 'short', day: 'numeric'});
+            
+            // Show results with animation
+            const results = document.getElementById('resultsContainer');
+            results.style.display = 'block';
+            results.style.animation = 'none';
+            void results.offsetWidth; // Trigger reflow
+            results.style.animation = 'slideUp 0.5s ease-out';
+        });
+    </script>
+</body>
+</html>

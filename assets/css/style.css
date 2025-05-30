@@ -1,0 +1,262 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #fff;
+    color: #333;
+}
+
+
+
+
+
+
+/* ===== Blog Section Styling ===== */
+
+/* Video Section Styles */
+.video-section {
+    width: 100%;
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    position: relative;
+    background: white;
+}
+
+.ssection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.ssection-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: white;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+
+.ssection-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    /* background: #e74c3c; */
+}
+
+.view-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #e74c3c;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+    color: #c0392b;
+    transform: translateX(5px);
+}
+
+
+
+
+
+.stats-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.stat-box {
+  background: white;
+  border-radius: 12px;
+  padding: 30px 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.stat-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.stat-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #d28f31, #ce6c37);
+  z-index: -1;
+  transition: height 0.3s ease;
+}
+
+.stat-box:hover::before {
+  height: 100%;
+}
+
+.stat-icon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+}
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e2be4a, #c27f2d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: white;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 5px 15px rgba(217, 119, 14, 0.3);
+}
+
+.icon-bg {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(74, 144, 226, 0.1);
+  z-index: 1;
+  animation: pulse 3s infinite;
+}
+
+.stat-content {
+  text-align: center;
+}
+
+.stat-content h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.stat-box:hover .stat-content h2 {
+  color: white;
+}
+
+.plus-sign {
+  font-size: 32px;
+  font-weight: 700;
+  color: #e67e22;
+  vertical-align: top;
+  transition: color 0.3s ease;
+}
+
+.stat-box:hover .plus-sign {
+  color: white;
+}
+
+.stat-content p {
+  margin: 10px 0 0;
+  font-size: 18px;
+  color: #7f8c8d;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.stat-box:hover .stat-content p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Counter animation */
+@keyframes counter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counter {
+  display: inline-block;
+  animation: counter 0.5s ease forwards;
+}
+
+/* Pulsing animation for icon background */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-box {
+    padding: 25px 20px;
+  }
+  
+  .stat-content h2 {
+    font-size: 36px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

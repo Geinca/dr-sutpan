@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Mukherji's Work Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --nkpc-primary: #0a66c2;
+            --nkpc-secondary: #25aae1;
+            --nkpc-light: #f8f9fa;
+            --nkpc-dark: #212529;
+        }
+
+        /* Gallery Container */
+        .nkpc-gallery-container {
+            font-family: 'Poppins', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+            position: relative;
+        }
+
+        .nkpc-gallery-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .nkpc-gallery-title {
+            font-size: 2.2rem;
+            color: var(--nkpc-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .nkpc-gallery-subtitle {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Slider Styles */
+        .nkpc-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            background: #f5f5f5;
+        }
+
+        .nkpc-slider-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: auto; /* Changed to auto for natural image height */
+        }
+
+        .nkpc-slide {
+            min-width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000; /* Black background for letterboxing */
+        }
+
+        .nkpc-slide-content {
+            position: relative;
+            width: 100%;
+            max-height: 80vh; /* Limit maximum height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nkpc-slide img {
+            max-width: 100%;
+            max-height: 80vh;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Changed to contain to preserve aspect ratio */
+            display: block;
+        }
+
+        .nkpc-slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: none;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .nkpc-slide-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .nkpc-slide-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation Buttons */
+        .nkpc-slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            z-index: 10;
+        }
+
+        .nkpc-slider-btn {
+            background: rgba(255,255,255,0.8);
+            color: var(--nkpc-primary);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .nkpc-slider-btn:hover {
+            background: var(--nkpc-primary);
+            color: white;
+        }
+
+        /* Dots Navigation */
+        .nkpc-dots-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .nkpc-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .nkpc-dot.active {
+            background: var(--nkpc-primary);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .nkpc-slide img {
+                max-height: 60vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nkpc-slide-title {
+                font-size: 1.1rem;
+            }
+            
+            .nkpc-slider-btn {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .nkpc-gallery-title {
+                font-size: 1.8rem;
+            }
+            
+            .nkpc-slide-caption {
+                padding: 1rem;
+            }
+            
+            .nkpc-slide-title {
+                font-size: 1rem;
+            }
+            
+            .nkpc-slide-desc {
+                font-size: 0.8rem;
+            }
+            
+            .nkpc-slide img {
+                max-height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nkpc-gallery-container">
+        <div class="nkpc-gallery-header">
+            <h2 class="nkpc-gallery-title">Dr. Mukherji's Surgical Expertise</h2>
+            <p class="nkpc-gallery-subtitle">A showcase of advanced urological procedures and patient care</p>
+        </div>
+        
+        <div class="nkpc-slider">
+            <div class="nkpc-slider-track">
+                <div class="nkpc-slide">
+                    <div class="nkpc-slide-content">
+                        <img src="https://i.ibb.co/yFcNGdyd/111.jpg" alt="Dr. Mukherji performing surgery">
+                        <div class="nkpc-slide-caption">
+                            <!-- <h3 class="nkpc-slide-title">Precision Laser Prostate Surgery</h3>
+                            <p class="nkpc-slide-desc">Using state-of-the-art Holmium laser for BPH treatment</p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="nkpc-slide">
+                    <div class="nkpc-slide-content">
+                        <img src="https://i.ibb.co/SDcJ9Vpb/222.jpg" alt="Minimally invasive procedure">
+                        <div class="nkpc-slide-caption">
+                            <!-- <h3 class="nkpc-slide-title">Minimally Invasive Techniques</h3>
+                            <p class="nkpc-slide-desc">Reducing recovery time with advanced laparoscopic approaches</p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="nkpc-slide">
+                    <div class="nkpc-slide-content">
+                        <img src="https://i.ibb.co/fVv758k2/333.jpg" alt="Robotic surgery setup">
+                        <div class="nkpc-slide-caption">
+                            <!-- <h3 class="nkpc-slide-title">Robotic-Assisted Surgery</h3>
+                            <p class="nkpc-slide-desc">Enhanced precision with da Vinci surgical system</p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="nkpc-slide">
+                    <div class="nkpc-slide-content">
+                        <img src="https://i.ibb.co/hxyhrvPT/444.jpg" alt="Patient consultation">
+                        <div class="nkpc-slide-caption">
+                            <!-- <h3 class="nkpc-slide-title">Comprehensive Patient Care</h3>
+                            <p class="nkpc-slide-desc">Personalized treatment plans for optimal outcomes</p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="nkpc-slide">
+                    <div class="nkpc-slide-content">
+                        <img src="https://i.ibb.co/8g7v2MZ9/555.jpg" alt="Surgical team">
+                        <div class="nkpc-slide-caption">
+                            <!-- <h3 class="nkpc-slide-title">Expert Surgical Team</h3>
+                            <p class="nkpc-slide-desc">Collaborative approach to complex urological cases</p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="nkpc-slide">
+                    <div class="nkpc-slide-content">
+                        <img src="https://i.ibb.co/Ld8PwWJf/666.jpg" alt="Medical conference">
+                        <div class="nkpc-slide-caption">
+                            <!-- <h3 class="nkpc-slide-title">Academic Contributions</h3>
+                            <p class="nkpc-slide-desc">Sharing knowledge at international urology conferences</p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="nkpc-slide">
+                    <div class="nkpc-slide-content">
+                        <img src="https://i.ibb.co/zHPn77tp/777.jpg" alt="Hospital facility">
+                        <div class="nkpc-slide-caption">
+                            <!-- <h3 class="nkpc-slide-title">Advanced Medical Facilities</h3>
+                            <p class="nkpc-slide-desc">Cutting-edge technology for superior patient outcomes</p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="nkpc-slide">
+                    <div class="nkpc-slide-content">
+                        <img src="https://i.ibb.co/zTXNWY3y/888.jpg" alt="Post-operative care">
+                        <div class="nkpc-slide-caption">
+                            <!-- <h3 class="nkpc-slide-title">Post-Operative Recovery</h3>
+                            <p class="nkpc-slide-desc">Comprehensive follow-up care for faster healing</p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nkpc-slider-nav">
+                <button class="nkpc-slider-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="nkpc-slider-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        
+        <div class="nkpc-dots-container" id="dotsContainer">
+            <!-- Dots will be added by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.nkpc-slider-track');
+            const slides = document.querySelectorAll('.nkpc-slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('dotsContainer');
+            
+            let currentIndex = 0;
+            const slideCount = slides.length;
+            
+            // Create dots
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('nkpc-dot');
+                if(index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    goToSlide(index);
+                });
+                dotsContainer.appendChild(dot);
+            });
+            
+            const dots = document.querySelectorAll('.nkpc-dot');
+            
+            // Update slider position
+            function updateSlider() {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update dots
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            // Go to specific slide
+            function goToSlide(index) {
+                currentIndex = index;
+                updateSlider();
+            }
+            
+            // Next slide
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slideCount;
+                updateSlider();
+            }
+            
+            // Previous slide
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+                updateSlider();
+            }
+            
+            // Event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            // Auto-advance (optional)
+            let slideInterval = setInterval(nextSlide, 5000);
+            
+            // Pause on hover
+            const slider = document.querySelector('.nkpc-slider');
+            slider.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            slider.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+            
+            // Touch support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            track.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                clearInterval(slideInterval);
+            }, {passive: true});
+            
+            track.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                slideInterval = setInterval(nextSlide, 5000);
+            }, {passive: true});
+            
+            function handleSwipe() {
+                const difference = touchStartX - touchEndX;
+                if (difference > 50) nextSlide(); // Swipe left
+                if (difference < -50) prevSlide(); // Swipe right
+            }
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') nextSlide();
+                if (e.key === 'ArrowLeft') prevSlide();
+            });
+        });
+    </script>
+</body>
+</html>

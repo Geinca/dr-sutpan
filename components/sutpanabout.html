@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Doctor Profile Section Styles */
+.doctor-profile-section {
+  background-color: #fff;
+  padding: 50px 0;
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+}
+
+.doctor-profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.doctor-profile-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.doctor-profile-title {
+  font-size: 2.8rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.doctor-profile-subtitle {
+  font-size: 1.3rem;
+  color: #8e44ad;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.doctor-profile-divider {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #8e44ad, #3498db);
+  margin: 0 auto;
+}
+
+.doctor-profile-content {
+  display: flex;
+  gap: 50px;
+}
+
+.doctor-profile-image {
+  flex: 0 0 500px;
+  position: relative;
+}
+
+.doctor-profile-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-profile-badge {
+  position: absolute;
+  top: 20px;
+  right: -15px;
+  background: linear-gradient(135deg, #8e44ad, #3498db);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.doctor-profile-badge span:first-child {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.doctor-profile-badge span:last-child {
+  display: block;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.doctor-profile-details {
+  flex: 1;
+}
+
+.doctor-section-title {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.doctor-section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background: #8e44ad;
+}
+
+.doctor-profile-bio p {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.doctor-education-list {
+  list-style: none;
+  padding: 0;
+}
+
+.doctor-education-list li {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.doctor-education-list li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.education-degree {
+  display: block;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.education-institute {
+  display: block;
+  color: #7f8c8d;
+  font-size: 0.95rem;
+}
+
+.specialties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.specialty-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  background-color: #f9f5ff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.specialty-item:hover {
+  background-color: #8e44ad;
+  color: white;
+}
+
+.specialty-item:hover svg {
+  stroke: white;
+}
+
+.specialty-item svg {
+  width: 24px;
+  height: 24px;
+  stroke: #8e44ad;
+  flex-shrink: 0;
+}
+
+.doctor-profile-cta {
+  display: flex;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.doctor-consult-btn {
+  display: inline-block;
+  background-color: #8e44ad;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.doctor-consult-btn:hover {
+  background-color: #7d3c98;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(142, 68, 173, 0.3);
+}
+
+.doctor-contact-btn {
+  display: inline-block;
+  background-color: transparent;
+  color: #8e44ad;
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 2px solid #8e44ad;
+  transition: all 0.3s ease;
+}
+
+.doctor-contact-btn:hover {
+  background-color: #f5e6ff;
+  transform: translateY(-3px);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 1024px) {
+  .doctor-profile-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .doctor-profile-image {
+    flex: 1;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .doctor-profile-badge {
+    right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .doctor-profile-section {
+    padding: 60px 0;
+  }
+  
+  .doctor-profile-title {
+    font-size: 2.2rem;
+  }
+  
+  .doctor-profile-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .doctor-section-title {
+    font-size: 1.6rem;
+  }
+  
+  .doctor-profile-cta {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .specialties-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .doctor-profile-title {
+    font-size: 1.8rem;
+  }
+  
+  .doctor-profile-image {
+    max-width: 100%;
+  }
+  
+  .doctor-profile-badge {
+    right: 10px;
+    padding: 10px 15px;
+  }
+  
+  .doctor-profile-badge span:first-child {
+    font-size: 1.5rem;
+  }
+  
+  .specialties-grid {
+    grid-template-columns: 1fr;
+  }
+}
+    </style>
+</head>
+<body>
+   <section class="doctor-profile-section">
+  <div class="doctor-profile-container">
+    <div class="doctor-profile-header">
+      <h1 class="doctor-profile-title">Dr. Sutapan Samanta</h1>
+      <p class="doctor-profile-subtitle">Senior Fertility Consultant & IVF Specialist</p>
+      <div class="doctor-profile-divider"></div>
+    </div>
+
+    <div class="doctor-profile-content">
+      <div class="doctor-profile-image">
+        <img src="images/fr.jpg" alt="Dr. Sutapan Samanta">
+        <div class="doctor-profile-badge">
+          <span>15+</span>
+          <span>Years Experience</span>
+        </div>
+        
+        <div class="doctor-profile-education">
+          <h2 class="doctor-section-title">Education & Credentials</h2>
+          <ul class="doctor-education-list">
+            <li>
+              <span class="education-degree">MBBS</span>
+              <span class="education-institute">R G KAR Medical College Hospital, Kolkata – 2011</span>
+            </li>
+            <li>
+              <span class="education-degree">M.S. (Obstetrics and Gynaecology)</span>
+              <span class="education-institute">Medical College Hospital, Kolkata – 2015</span>
+            </li>
+            <li>
+              <span class="education-degree">DNB</span>
+              <span class="education-institute">National Board of Examinations – 2015</span>
+            </li>
+            <li>
+              <span class="education-degree">ART Fellowship</span>
+              <span class="education-institute">Indira IVF, Udaipur – 2017</span>
+            </li>
+            <li>
+              <span class="education-degree">Director – ART Level 2 Centre</span>
+              <span class="education-institute">Previously managed ART Level 2 centre</span>
+            </li>
+            <li>
+              <span class="education-degree">QAI Accreditation & CME Faculty</span>
+              <span class="education-institute">Associated with QAI process and national medical conferences</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="doctor-profile-details" style="padding-top: 90px;">
+        <div class="doctor-profile-bio">
+          <h2 class="doctor-section-title">About Dr. Sutapan Samanta</h2>
+          <p>Dr. Sutapan Samanta is a Senior Fertility Consultant and IVF Specialist practicing in Kolkata, Asansol, and Durgapur in West Bengal. His prowess in the subject of Reproductive Medicine and Endocrinology has earned him a successful career in infertility management.</p>
+          <p>He has expertise in every aspect of Assisted Reproductive Therapy (ART – IUI, IVF, and ICSI), and follows evidence-based practices tailored to individual needs. With updated knowledge and excellent surgical skills, he has helped countless couples achieve their dream of parenthood. Currently, he is working as a Senior IVF Specialist with the expert panel of the Crysta IVF Centre in Kolkata.</p>
+          <p>His expertise includes Fertility Counselling, Affordable Individualised Stimulation Protocols, USG-guided Oocyte Retrieval and Embryo Transfer, Fertility Enhancing Surgeries (Hysteroscopy and Laparoscopy), and 3D/4D Ultrasound.</p>
+        </div>
+
+        <div class="doctor-profile-specialties">
+          <h2 class="doctor-section-title">Specialties & Expertise</h2>
+          <div class="specialties-grid">
+            <div class="specialty-item">
+              <svg xmlns="http://www.w3.org/2000/svg" ...></svg>
+              <span>Endometriosis & Infertility</span>
+            </div>
+            <div class="specialty-item">
+              <svg xmlns="http://www.w3.org/2000/svg" ...></svg>
+              <span>Low AMH Subfertility</span>
+            </div>
+            <div class="specialty-item">
+              <svg xmlns="http://www.w3.org/2000/svg" ...></svg>
+              <span>Repeated IVF Failure</span>
+            </div>
+            <div class="specialty-item">
+              <svg xmlns="http://www.w3.org/2000/svg" ...></svg>
+              <span>Male Factor Infertility (Azoospermia)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="doctor-profile-cta">
+          <a href="#" class="doctor-consult-btn">Schedule a Consultation</a>
+          <a href="#" class="doctor-contact-btn">Contact Dr. Samanta</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

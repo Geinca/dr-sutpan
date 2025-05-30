@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Team</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+       /* Services Section Styles */
+.fertility-services-section {
+  background-color: white;
+  padding: 50px 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.fertility-services-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.fertility-services-heading {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.fertility-services-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #8e44ad, #3498db);
+}
+
+.fertility-services-subheading {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 50px;
+  line-height: 1.6;
+}
+
+.fertility-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.fertility-service-card {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.fertility-service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #8e44ad, #3498db);
+  transition: height 0.3s ease;
+  z-index: -1;
+}
+
+.fertility-service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.fertility-service-card:hover::before {
+  height: 100%;
+  opacity: 0.9;
+}
+
+.fertility-service-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #f5e6ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.fertility-service-card:hover .fertility-service-icon {
+  background-color: white;
+}
+
+.fertility-service-icon svg {
+  width: 30px;
+  height: 30px;
+  color: #8e44ad;
+  transition: all 0.3s ease;
+}
+
+.fertility-service-card:hover .fertility-service-icon svg {
+  color: #8e44ad;
+}
+
+.fertility-service-title {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+
+.fertility-service-card:hover .fertility-service-title {
+  color: white;
+}
+
+.fertility-service-description {
+  color: #7f8c8d;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.fertility-service-card:hover .fertility-service-description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.fertility-service-link {
+  display: inline-flex;
+  align-items: center;
+  color: #8e44ad;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.fertility-service-card:hover .fertility-service-link {
+  color: white;
+}
+
+.fertility-service-link span {
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+
+.fertility-service-link:hover span {
+  transform: translateX(5px);
+}
+
+/* Individual Service Card Colors */
+.fertility-service-card-ivf::before {
+  background: linear-gradient(90deg, #8e44ad, #9b59b6);
+}
+
+.fertility-service-card-iui::before {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+}
+
+.fertility-service-card-egg::before {
+  background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
+
+.fertility-service-card-testing::before {
+  background: linear-gradient(90deg, #2ecc71, #27ae60);
+}
+
+.fertility-service-card-donor::before {
+  background: linear-gradient(90deg, #f39c12, #e67e22);
+}
+
+.fertility-service-card-genetic::before {
+  background: linear-gradient(90deg, #1abc9c, #16a085);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .fertility-services-section {
+    padding: 50px 0;
+  }
+  
+  .fertility-services-heading {
+    font-size: 2rem;
+  }
+  
+  .fertility-services-subheading {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+  
+  .fertility-services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .fertility-service-card {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fertility-services-heading {
+    font-size: 1.8rem;
+  }
+  
+  .fertility-service-title {
+    font-size: 1.3rem;
+  }
+}
+    </style>
+</head>
+<body>
+    <section class="fertility-services-section">
+        <div class="fertility-services-container">
+          <h2 class="fertility-services-heading">Our Specialized Services</h2>
+          <p class="fertility-services-subheading">Comprehensive fertility solutions tailored to your unique journey</p>
+          
+          <div class="fertility-services-grid">
+            <!-- Service 1 -->
+            <div class="fertility-service-card fertility-service-card-ivf">
+              <div class="fertility-service-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9.5C2 7 4 5 6.5 5H18c2.2 0 4 1.8 4 4v8z"></path>
+                  <polyline points="15,9 18,9 18,12"></polyline>
+                  <line x1="10" y1="9" x2="13" y2="12"></line>
+                  <line x1="13" y1="9" x2="10" y2="12"></line>
+                </svg>
+              </div>
+              <h3 class="fertility-service-title">IVF Treatment</h3>
+              <p class="fertility-service-description">In vitro fertilization with high success rates and personalized protocols</p>
+              <a href="#" class="fertility-service-link">Learn more <span>&rarr;</span></a>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="fertility-service-card fertility-service-card-iui">
+              <div class="fertility-service-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M16 8h-6a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h6"></path>
+                </svg>
+              </div>
+              <h3 class="fertility-service-title">IUI Treatment</h3>
+              <p class="fertility-service-description">Intrauterine insemination with careful monitoring and timing</p>
+              <a href="#" class="fertility-service-link">Learn more <span>&rarr;</span></a>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="fertility-service-card fertility-service-card-egg">
+              <div class="fertility-service-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22a10 10 0 0 1-7.1-17.1C6.5 2.5 9.5 2 12 2s5.5.5 7.1 2.9A10 10 0 0 1 12 22z"></path>
+                </svg>
+              </div>
+              <h3 class="fertility-service-title">Egg Freezing</h3>
+              <p class="fertility-service-description">Preserve your fertility potential with our advanced cryopreservation</p>
+              <a href="#" class="fertility-service-link">Learn more <span>&rarr;</span></a>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="fertility-service-card fertility-service-card-testing">
+              <div class="fertility-service-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <h3 class="fertility-service-title">Fertility Testing</h3>
+              <p class="fertility-service-description">Comprehensive diagnostics to identify factors affecting fertility</p>
+              <a href="#" class="fertility-service-link">Learn more <span>&rarr;</span></a>
+            </div>
+            
+            <!-- Service 5 -->
+            <div class="fertility-service-card fertility-service-card-donor">
+              <div class="fertility-service-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h3 class="fertility-service-title">Donor Programs</h3>
+              <p class="fertility-service-description">Carefully screened donor options with comprehensive matching</p>
+              <a href="#" class="fertility-service-link">Learn more <span>&rarr;</span></a>
+            </div>
+            
+            <!-- Service 6 -->
+            <div class="fertility-service-card fertility-service-card-genetic">
+              <div class="fertility-service-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <h3 class="fertility-service-title">Genetic Screening</h3>
+              <p class="fertility-service-description">Advanced testing to identify genetic conditions and improve outcomes</p>
+              <a href="#" class="fertility-service-link">Learn more <span>&rarr;</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+</body>
+</html>

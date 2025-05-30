@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Top Bar</title>
+    <style>
+        /* Reset and base styles */
+      
+        /* Top bar styles */
+      /* Top Bar Styles */
+.top-bar {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    height: var(--top-bar-height);
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    position: relative;
+    z-index: 1001;
+}
+
+.top-bar-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar-info {
+    display: flex;
+    gap: 30px;
+}
+
+.top-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.top-bar-icon {
+    color: var(--secondary);
+    font-size: 14px;
+}
+
+.top-bar-link {
+    color: var(--white);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.top-bar-link:hover {
+    color: var(--secondary);
+}
+
+@media (max-width: 768px) {
+    .top-bar {
+        display: none;
+    }
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+   <!-- Top Bar -->
+<div class="top-bar">
+    <div class="top-bar-container">
+        <div class="top-bar-info">
+            <div class="top-bar-item">
+                <i class="fas fa-phone-alt top-bar-icon"></i>
+                <a href="tel:1800 309 2323" class="top-bar-link">1800 309 2323</a>
+            </div>
+            <div class="top-bar-item">
+                <i class="fas fa-envelope top-bar-icon"></i>
+                <a href="mailto:centerhead.asansol@indiraivf.in" class="top-bar-link">centerhead.asansol@indiraivf.in</a>
+            </div>
+        </div>
+        <div class="top-bar-item">
+            <i class="fas fa-clock top-bar-icon"></i>
+            <span>24/7 Monday to Sunday</span>
+        </div>
+    </div>
+</div>
+    
+
+</body>
+</html>
