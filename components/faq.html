@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertility Treatment FAQ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .divfaq {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+
+        .medical-faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .questions-section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .fertility-faq-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .fertility-faq-title::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+            border-radius: 2px;
+        }
+
+        .treatment-faq-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .fertility-questions-wrapper {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .medical-faq-item {
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .medical-faq-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .infertility-question-header {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f1f3ff 100%);
+            border-bottom: 1px solid rgba(142, 68, 173, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .infertility-question-header:hover {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+        }
+
+        .infertility-question-header:hover .treatment-question-text {
+            color: white;
+        }
+
+        .infertility-question-header:hover .faq-toggle-icon {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .treatment-question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            transition: color 0.3s ease;
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .faq-toggle-icon {
+            font-size: 1.3rem;
+            color: #8e44ad;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .medical-faq-item.active .faq-toggle-icon {
+            transform: rotate(180deg);
+            color: #8e44ad;
+        }
+
+        .fertility-answer-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+        }
+
+        .medical-faq-item.active .fertility-answer-content {
+            max-height: 300px;
+            padding: 30px;
+        }
+
+        .treatment-answer-text {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1rem;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .treatment-answer-text::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            border-radius: 2px;
+        }
+
+        /* Special styling for different FAQ categories */
+        .medical-faq-item:nth-child(1) .infertility-question-header:hover {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .medical-faq-item:nth-child(2) .infertility-question-header:hover {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .medical-faq-item:nth-child(3) .infertility-question-header:hover {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+
+        .medical-faq-item:nth-child(4) .infertility-question-header:hover {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+
+        .medical-faq-item:nth-child(5) .infertility-question-header:hover {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+        }
+
+        .medical-faq-item:nth-child(6) .infertility-question-header:hover {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .medical-faq-container {
+                padding: 0 15px;
+            }
+
+            .fertility-faq-title {
+                font-size: 2.2rem;
+            }
+
+            .treatment-faq-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .fertility-questions-wrapper {
+                padding: 25px;
+                border-radius: 20px;
+            }
+
+            .infertility-question-header {
+                padding: 20px;
+            }
+
+            .treatment-question-text {
+                font-size: 1rem;
+                margin-right: 15px;
+            }
+
+            .medical-faq-item.active .fertility-answer-content {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fertility-faq-title {
+                font-size: 1.8rem;
+            }
+
+            .infertility-question-header {
+                padding: 18px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .faq-toggle-icon {
+                align-self: flex-end;
+                margin-top: -30px;
+            }
+        }
+
+        /* Animation for content reveal */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .medical-faq-item.active .fertility-answer-content {
+            animation: fadeInUp 0.4s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="divfaq">
+    <div class="medical-faq-container">
+        <div class="questions-section-header">
+            <h2 class="fertility-faq-title">Frequently Asked Questions</h2>
+            <p class="treatment-faq-subtitle">Get answers to common questions about our fertility treatments and specialized services</p>
+        </div>
+
+        <div class="fertility-questions-wrapper">
+            <div class="medical-faq-item">
+                <div class="infertility-question-header">
+                    <span class="treatment-question-text">What is IVF treatment and how successful is it?</span>
+                    <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                </div>
+                <div class="fertility-answer-content">
+                    <p class="treatment-answer-text">In vitro fertilization (IVF) is a comprehensive fertility treatment where eggs are retrieved from the ovaries and fertilized with sperm in our laboratory. We offer personalized protocols with high success rates, carefully monitoring each step to maximize your chances of pregnancy.</p>
+                </div>
+            </div>
+
+            <div class="medical-faq-item">
+                <div class="infertility-question-header">
+                    <span class="treatment-question-text">How does IUI treatment differ from IVF?</span>
+                    <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                </div>
+                <div class="fertility-answer-content">
+                    <p class="treatment-answer-text">Intrauterine insemination (IUI) is a less invasive procedure where prepared sperm is directly placed into the uterus during ovulation. We provide careful monitoring and precise timing to optimize the chances of fertilization, making it an excellent first-line treatment option.</p>
+                </div>
+            </div>
+
+            <div class="medical-faq-item">
+                <div class="infertility-question-header">
+                    <span class="treatment-question-text">What is egg freezing and who should consider it?</span>
+                    <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                </div>
+                <div class="fertility-answer-content">
+                    <p class="treatment-answer-text">Egg freezing allows you to preserve your fertility potential for the future using advanced cryopreservation technology. This is ideal for women who want to delay childbearing for career, education, or personal reasons, or those facing medical treatments that may affect fertility.</p>
+                </div>
+            </div>
+
+            <div class="medical-faq-item">
+                <div class="infertility-question-header">
+                    <span class="treatment-question-text">What does comprehensive fertility testing include?</span>
+                    <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                </div>
+                <div class="fertility-answer-content">
+                    <p class="treatment-answer-text">Our fertility testing includes comprehensive diagnostics to identify all factors affecting fertility. We conduct hormone assessments, imaging studies, genetic screening, and both male and female fertility evaluations to create a complete picture and personalized treatment plan.</p>
+                </div>
+            </div>
+
+            <div class="medical-faq-item">
+                <div class="infertility-question-header">
+                    <span class="treatment-question-text">How do your donor programs work?</span>
+                    <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                </div>
+                <div class="fertility-answer-content">
+                    <p class="treatment-answer-text">Our donor programs feature carefully screened donors with comprehensive matching based on physical characteristics, medical history, and other important factors. We ensure all donors undergo rigorous medical and psychological screening to provide you with the best possible options.</p>
+                </div>
+            </div>
+
+            <div class="medical-faq-item">
+                <div class="infertility-question-header">
+                    <span class="treatment-question-text">What treatments are available for male and female infertility?</span>
+                    <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                </div>
+                <div class="fertility-answer-content">
+                    <p class="treatment-answer-text">We offer specialized treatments for both partners, including pharmaceutical interventions, surgical options, and advanced assisted reproductive technologies. Our approach is tailored to address the specific cause of infertility, dramatically increasing the chances of successful pregnancy once diagnosed.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.medical-faq-item');
+            
+            faqItems.forEach(item => {
+                const header = item.querySelector('.infertility-question-header');
+                
+                header.addEventListener('click', function() {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other FAQ items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    if (isActive) {
+                        item.classList.remove('active');
+                    } else {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Offers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .divbenefits {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 20vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .special-offers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .offer-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .offer-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.05);
+        }
+
+        .offer-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .offer-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .special-offers {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="divbenefits">
+    <div class="special-offers">
+        <div class="offer-card">
+            <div class="offer-value">₹75,000</div>
+            <div class="offer-text">Benefits up to<br>IVF Package</div>
+        </div>
+        
+        <div class="offer-card">
+            <div class="offer-value">0%</div>
+            <div class="offer-text">Interest Rate<br>on EMI</div>
+        </div>
+        
+        <div class="offer-card">
+            <div class="offer-value">FREE</div>
+            <div class="offer-text">Initial<br>Consultation</div>
+        </div>
+        
+        <div class="offer-card">
+            <div class="offer-value">FREE</div>
+            <div class="offer-text">Semen<br>Analysis</div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

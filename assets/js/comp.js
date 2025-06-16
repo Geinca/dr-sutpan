@@ -818,7 +818,14 @@ function initwhatsapp(){
 
 
 
-
+document.addEventListener("DOMContentLoaded", function () {
+    // Load hero section dynamically
+    fetch("components/ivf.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("ivf").innerHTML = data;  // Initialize carousel after loading hero section
+        });
+});
 
 
 
@@ -875,9 +882,80 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+document.addEventListener("DOMContentLoaded", function () {
+    // Load hero section dynamically
+    fetch("components/benefits.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("benefits").innerHTML = data;  // Initialize carousel after loading hero section
+        });
+});
 
+document.addEventListener("DOMContentLoaded", function () {
+    // Load benefits section dynamically
+    fetch("components/pdf.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("pdf").innerHTML = data;
+            // Initialize any carousel or other components in benefits.html here if needed
+        })
+        .catch(error => {
+            console.error("Error loading benefits component:", error);
+        });
 
+    // Initialize flipbook fullscreen functionality
+    initializeFlipbook();
+});
 
+function initializeFlipbook() {
+    // Fullscreen toggle function
+    function toggleFullscreen() {
+        const iframe = document.querySelector('.flipbook-iframe');
+        
+        if (!document.fullscreenElement) {
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+    }
+    
+    // Update button text based on fullscreen state
+    function updateButtonText() {
+        const btn = document.querySelector('.fullscreen-btn');
+        if (btn) {  // Check if button exists
+            if (document.fullscreenElement || 
+                document.webkitFullscreenElement || 
+                document.msFullscreenElement) {
+                btn.textContent = 'Exit Fullscreen';
+            } else {
+                btn.textContent = 'View Fullscreen';
+            }
+        }
+    }
+    
+    // Add event listeners if flipbook elements exist
+    const fullscreenBtn = document.querySelector('.fullscreen-btn');
+    if (fullscreenBtn) {
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+        
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', updateButtonText);
+        document.addEventListener('webkitfullscreenchange', updateButtonText);
+        document.addEventListener('msfullscreenchange', updateButtonText);
+    }
+}
 
 
 
@@ -887,10 +965,93 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch("components/service2.html")
         .then(response => response.text())
         .then(data => {
-            document.getElementById("service2").innerHTML = data;  // Initialize carousel after loading hero section
+            document.getElementById("service2").innerHTML = data; 
+            initservice2(); // Initialize carousel after loading hero section
         });
 });
-
+ function initservice2(){
+ const track = document.querySelector('.fertility-carousel-track');
+    const slides = Array.from(document.querySelectorAll('.fertility-service-slide'));
+    const nextButton = document.querySelector('.fertility-carousel-next');
+    const prevButton = document.querySelector('.fertility-carousel-prev');
+    
+    let currentIndex = 0;
+    let slidesToShow = 1;
+    
+    function updateSlidesToShow() {
+        if (window.innerWidth >= 992) {
+            slidesToShow = 3;
+        } else if (window.innerWidth >= 768) {
+            slidesToShow = 2;
+        } else {
+            slidesToShow = 1;
+        }
+        updateCarousel();
+    }
+    
+    function updateCarousel() {
+        const slideWidth = 100 / slidesToShow;
+        slides.forEach(slide => {
+            slide.style.minWidth = `${slideWidth}%`;
+        });
+        
+        const offset = -currentIndex * slideWidth;
+        track.style.transform = `translateX(${offset}%)`;
+    }
+    
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % (slides.length - slidesToShow + 1);
+        updateCarousel();
+    }
+    
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + (slides.length - slidesToShow + 1)) % (slides.length - slidesToShow + 1);
+        updateCarousel();
+    }
+    
+    nextButton.addEventListener('click', nextSlide);
+    prevButton.addEventListener('click', prevSlide);
+    
+    window.addEventListener('resize', updateSlidesToShow);
+    
+    // Initialize the carousel
+    updateSlidesToShow();
+    
+    // Optional: Auto-advance carousel
+    let autoSlideInterval = setInterval(nextSlide, 5000);
+    
+    // Pause auto-slide on hover
+    const carouselWrapper = document.querySelector('.fertility-carousel-wrapper');
+    carouselWrapper.addEventListener('mouseenter', () => {
+        clearInterval(autoSlideInterval);
+    });
+    
+    carouselWrapper.addEventListener('mouseleave', () => {
+        autoSlideInterval = setInterval(nextSlide, 5000);
+    });
+    
+    // Optional: Touch support for mobile devices
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+    
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, {passive: true});
+    
+    function handleSwipe() {
+        const threshold = 50;
+        if (touchEndX < touchStartX - threshold) {
+            nextSlide();
+        } else if (touchEndX > touchStartX + threshold) {
+            prevSlide();
+        }
+    }
+ }
 
 document.addEventListener("DOMContentLoaded", function () {
     // Load hero section dynamically
@@ -901,6 +1062,37 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    // Load hero section dynamically
+    fetch("components/faq.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("faq").innerHTML = data; 
+              const faqItems = document.querySelectorAll('.medical-faq-item');
+            
+            faqItems.forEach(item => {
+                const header = item.querySelector('.infertility-question-header');
+                
+                header.addEventListener('click', function() {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other FAQ items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    if (isActive) {
+                        item.classList.remove('active');
+                    } else {
+                        item.classList.add('active');
+                    }
+                });
+            }); // Initialize carousel after loading hero section
+        });
+});
 
 
 
@@ -958,6 +1150,39 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.text())
         .then(data => {
             document.getElementById("app").innerHTML = data;
+            const form = document.getElementById('fertilityAppointmentForm');
+    
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const service = document.getElementById('fertility-service').value;
+      const firstName = document.getElementById('fertility-first-name').value;
+      const lastName = document.getElementById('fertility-last-name').value;
+      const email = document.getElementById('fertility-email').value;
+      const phone = document.getElementById('fertility-phone').value;
+      const date = document.getElementById('fertility-date').value;
+      const time = document.getElementById('fertility-time').value;
+      const message = document.getElementById('fertility-message').value;
+
+      const fullMessage = `
+*New Appointment Booking*:
+-----------------------------
+👤 Name: ${firstName} ${lastName}
+📧 Email: ${email}
+📞 Phone: ${phone}
+📅 Date: ${date}
+🕒 Time: ${time}
+🩺 Service: ${service}
+📝 Notes: ${message || 'None'}
+`;
+
+      const encodedMessage = encodeURIComponent(fullMessage);
+      const whatsappNumber = "919830636683"; // Use country code (91 for India) + number without + sign
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+      // Redirect to WhatsApp
+      window.open(whatsappURL, '_blank');
+    });
         })
         .catch(error => console.error("Error loading the header:", error));
 });

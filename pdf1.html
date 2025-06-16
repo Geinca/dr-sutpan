@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Flipbook Viewer</title>
+    <style>
+        .flipbook-section {
+            font-family: 'Arial', sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .flipbook-header {
+            margin-bottom: 30px;
+        }
+        
+        .flipbook-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            perspective: 1500px;
+            margin: 0 auto;
+        }
+        
+        .flipbook {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        
+        .page {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            transform-origin: left center;
+            transition: transform 1s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backface-visibility: hidden;
+        }
+        
+        .page img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .page.left {
+            left: 0;
+            border-radius: 5px 0 0 5px;
+        }
+        
+        .page.right {
+            left: 50%;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .page.flipping {
+            z-index: 100;
+        }
+        
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background: #4a6fa5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #3a5a8f;
+        }
+        
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .page-number {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section class="flipbook-section">
+        <div class="flipbook-header">
+            <h2>Interactive PDF Flipbook</h2>
+            <p>Flip through the pages like a real book</p>
+        </div>
+        
+        <div class="flipbook-container">
+            <div class="flipbook" id="flipbook">
+                <!-- Pages will be dynamically inserted here -->
+                <div class="loading">Loading PDF...</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="prev-btn" disabled>Previous</button>
+            <button id="next-btn">Next</button>
+        </div>
+        
+        <div class="page-number">
+            Page <span id="current-page">1</span> of <span id="total-pages">0</span>
+        </div>
+    </section>
+
+    <!-- PDF.js libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script>
+        // Set the path to the PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+        
+        // Flipbook variables
+        let currentPage = 1;
+        let pdfDoc = null;
+        let totalPages = 0;
+        let isFlipping = false;
+        
+        // DOM elements
+        const flipbook = document.getElementById('flipbook');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const currentPageSpan = document.getElementById('current-page');
+        const totalPagesSpan = document.getElementById('total-pages');
+        
+        // Replace this URL with your PDF when ready
+        const pdfUrl = 'https://example.com/sample.pdf';
+        
+        // Initialize the flipbook
+        async function initFlipbook() {
+            try {
+                // Load the PDF
+                pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
+                totalPages = pdfDoc.numPages;
+                totalPagesSpan.textContent = totalPages;
+                
+                // Clear loading message
+                flipbook.innerHTML = '';
+                
+                // Load the first two pages
+                await renderPages();
+                
+                // Enable/disable buttons
+                updateControls();
+            } catch (error) {
+                console.error('Error loading PDF:', error);
+                flipbook.innerHTML = '<div class="loading">Error loading PDF. Please try again later.</div>';
+            }
+        }
+        
+        // Render the current and next page
+        async function renderPages() {
+            if (!pdfDoc) return;
+            
+            // Clear existing pages (keep only 2 pages for this simple example)
+            flipbook.innerHTML = '';
+            
+            // Render current page (right side)
+            if (currentPage <= totalPages) {
+                const page = await pdfDoc.getPage(currentPage);
+                const viewport = page.getViewport({ scale: 1.5 });
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                
+                await page.render({
+                    canvasContext: context,
+                    viewport: viewport
+                }).promise;
+                
+                const rightPage = document.createElement('div');
+                rightPage.className = 'page right';
+                rightPage.innerHTML = `<img src="${canvas.toDataURL()}" alt="Page ${currentPage}">`;
+                flipbook.appendChild(rightPage);
+            }
+            
+            // Render next page (left side) if exists
+            if (currentPage < totalPages) {
+                const nextPageNum = currentPage + 1;
+                const page = await pdfDoc.getPage(nextPageNum);
+                const viewport = page.getViewport({ scale: 1.5 });
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                
+                await page.render({
+                    canvasContext: context,
+                    viewport: viewport
+                }).promise;
+                
+                const leftPage = document.createElement('div');
+                leftPage.className = 'page left';
+                leftPage.innerHTML = `<img src="${canvas.toDataURL()}" alt="Page ${nextPageNum}">`;
+                flipbook.appendChild(leftPage);
+            }
+            
+            currentPageSpan.textContent = currentPage;
+        }
+        
+        // Update control buttons state
+        function updateControls() {
+            prevBtn.disabled = currentPage <= 1 || isFlipping;
+            nextBtn.disabled = currentPage >= totalPages || isFlipping;
+        }
+        
+        // Go to previous page
+        async function goToPrevPage() {
+            if (currentPage <= 1 || isFlipping) return;
+            
+            isFlipping = true;
+            updateControls();
+            
+            currentPage--;
+            await renderPages();
+            
+            isFlipping = false;
+            updateControls();
+        }
+        
+        // Go to next page
+        async function goToNextPage() {
+            if (currentPage >= totalPages || isFlipping) return;
+            
+            isFlipping = true;
+            updateControls();
+            
+            currentPage++;
+            await renderPages();
+            
+            isFlipping = false;
+            updateControls();
+        }
+        
+        // Event listeners
+        prevBtn.addEventListener('click', goToPrevPage);
+        nextBtn.addEventListener('click', goToNextPage);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                goToPrevPage();
+            } else if (e.key === 'ArrowRight') {
+                goToNextPage();
+            }
+        });
+        
+        // Initialize the flipbook when the page loads
+        window.addEventListener('load', initFlipbook);
+    </script>
+</body>
+</html>

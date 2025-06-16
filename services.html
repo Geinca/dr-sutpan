@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertility Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .main-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #8e44ad, #3498db);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 800px;
+            margin: 30px auto 0;
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #8e44ad, #3498db);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .service-title {
+            font-size: 1.6rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .service-description {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            color: #8e44ad;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .service-link:hover {
+            color: #3498db;
+            transform: translateX(5px);
+        }
+
+        .service-link::after {
+            content: '→';
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-link:hover::after {
+            transform: translateX(5px);
+        }
+
+        .treatment-section {
+            margin-top: 100px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .treatment-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .treatment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .treatment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .treatment-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .female-treatment .treatment-icon {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .male-treatment .treatment-icon {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .couple-treatment .treatment-icon {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+        }
+
+        .treatment-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .treatment-description {
+            color: #7f8c8d;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .treatment-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid;
+        }
+
+        .female-treatment .treatment-btn {
+            color: #e74c3c;
+            border-color: #e74c3c;
+        }
+
+        .female-treatment .treatment-btn:hover {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .male-treatment .treatment-btn {
+            color: #3498db;
+            border-color: #3498db;
+        }
+
+        .male-treatment .treatment-btn:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        .couple-treatment .treatment-btn {
+            color: #8e44ad;
+            border-color: #8e44ad;
+        }
+
+        .couple-treatment .treatment-btn:hover {
+            background: #8e44ad;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 15px;
+            }
+
+            .main-title {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .treatment-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+     <div id="top"></div>
+    <div id="nav"></div>
+    <div class="container">
+        <!-- Main Services Section -->
+        <div class="header-section">
+            <h1 class="main-title">Our Specialized Services</h1>
+            <p class="subtitle">Comprehensive fertility solutions tailored to your unique journey towards parenthood</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🧪</div>
+                <h3 class="service-title">IVF Treatment</h3>
+                <p class="service-description">In vitro fertilization with high success rates and personalized protocols designed for your specific needs.</p>
+                <a href="#" class="service-link">Learn more</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💉</div>
+                <h3 class="service-title">IUI Treatment</h3>
+                <p class="service-description">Intrauterine insemination with careful monitoring and precise timing for optimal results.</p>
+                <a href="#" class="service-link">Learn more</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">❄️</div>
+                <h3 class="service-title">Egg Freezing</h3>
+                <p class="service-description">Preserve your fertility potential with our advanced cryopreservation technology.</p>
+                <a href="#" class="service-link">Learn more</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📋</div>
+                <h3 class="service-title">Fertility Testing</h3>
+                <p class="service-description">Comprehensive diagnostics to identify factors affecting fertility and guide treatment decisions.</p>
+                <a href="#" class="service-link">Learn more</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">👥</div>
+                <h3 class="service-title">Donor Programs</h3>
+                <p class="service-description">Carefully screened donor options with comprehensive matching and support services.</p>
+                <a href="#" class="service-link">Learn more</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🧬</div>
+                <h3 class="service-title">Genetic Screening</h3>
+                <p class="service-description">Advanced testing to identify genetic conditions and improve pregnancy outcomes.</p>
+                <a href="#" class="service-link">Learn more</a>
+            </div>
+        </div>
+
+        <!-- Treatment Options Section -->
+        <div class="treatment-section">
+            <div class="section-header">
+                <h2 class="section-title">Couple Infertility Treatments</h2>
+                <p class="section-subtitle">Once the exact cause of infertility is diagnosed, the chances of a successful pregnancy increase dramatically with our specialized treatments.</p>
+            </div>
+
+            <div class="treatment-cards">
+                <div class="treatment-card female-treatment">
+                    <div class="treatment-icon">♀</div>
+                    <h3 class="treatment-title">Female Fertility Treatments</h3>
+                    <p class="treatment-description">Our comprehensive female fertility treatments range from medication administration to surgical interventions, all tailored to address the specific cause of infertility.</p>
+                    <a href="#" class="treatment-btn">Learn More</a>
+                </div>
+
+                <div class="treatment-card male-treatment">
+                    <div class="treatment-icon">♂</div>
+                    <h3 class="treatment-title">Male Fertility Treatments</h3>
+                    <p class="treatment-description">We offer advanced male fertility solutions including pharmaceutical treatments and surgical options, all designed to precisely target the root cause.</p>
+                    <a href="#" class="treatment-btn">Learn More</a>
+                </div>
+
+                <div class="treatment-card couple-treatment">
+                    <div class="treatment-icon">⚤</div>
+                    <h3 class="treatment-title">Couple Fertility Treatments</h3>
+                    <p class="treatment-description">Comprehensive solutions for couples facing infertility, with personalized treatment plans to maximize your chances of successful pregnancy.</p>
+                    <a href="#" class="treatment-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+
+ <script src="assets/js/script.js"></script>
+ <script src="assets/js/comp.js"></script>
+</body>
+</html>

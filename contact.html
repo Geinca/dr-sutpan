@@ -158,5 +158,49 @@
     <div id="footer"></div>
     <script src="/assets/js/script.js"></script>
  <script src="/assets/js/comp.js"></script>
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Get the contact form
+    const contactForm = document.querySelector('.contact-form');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the default form submission
+            
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            // Validate required fields
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields (Name, Email, and Message).');
+                return;
+            }
+            
+            // WhatsApp phone number (with country code, no + or spaces)
+            const phoneNumber = '919830636683'; // Replace with your desired WhatsApp number
+            
+            // Format the message for WhatsApp
+            const whatsappMessage = 
+                `*New Contact Form Submission*%0A%0A` +
+                `*Name:* ${name}%0A` +
+                `*Email:* ${email}%0A` +
+                `*Subject:* ${subject || 'Not specified'}%0A` +
+                `*Message:* ${message}`;
+            
+            // Create WhatsApp URL
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+            
+            // Open WhatsApp in a new tab
+            window.open(whatsappURL, '_blank');
+            
+            // Optional: Reset the form after submission
+            contactForm.reset();
+        });
+    }
+});
+ </script>
 </body>
 </html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Choose IVF</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        .divivf {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+
+        .ivf-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .ivf-title {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .ivf-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .reason-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .reason-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .reason-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .reason-card:nth-child(1) .reason-icon { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+        .reason-card:nth-child(2) .reason-icon { background: linear-gradient(135deg, #4834d4, #686de0); }
+        .reason-card:nth-child(3) .reason-icon { background: linear-gradient(135deg, #00d2d3, #01a3a4); }
+        .reason-card:nth-child(4) .reason-icon { background: linear-gradient(135deg, #ff9ff3, #f368e0); }
+
+        .reason-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .reason-text {
+            color: #7f8c8d;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .ivf-title { font-size: 2.2rem; }
+            .ivf-subtitle { font-size: 1.1rem; }
+            .reasons-grid { grid-template-columns: 1fr; gap: 20px; }
+            .reason-card { padding: 30px 25px; }
+        }
+    </style>
+</head>
+<body>
+      <div class="divivf">
+    <div class="ivf-section">
+        <h2 class="ivf-title">Why Choose IVF?</h2>
+        <p class="ivf-subtitle">Advanced fertility treatment with personalized protocols and high success rates</p>
+        
+        <div class="reasons-grid">
+            <div class="reason-card">
+                <div class="reason-icon">🎯</div>
+                <h3 class="reason-title">High Success Rates</h3>
+                <p class="reason-text">Our advanced IVF protocols deliver industry-leading success rates with personalized treatment plans tailored to your unique needs.</p>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-icon">🔬</div>
+                <h3 class="reason-title">Advanced Technology</h3>
+                <p class="reason-text">State-of-the-art laboratory facilities and cutting-edge reproductive technologies ensure optimal conditions for fertilization.</p>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-icon">👥</div>
+                <h3 class="reason-title">Expert Care Team</h3>
+                <p class="reason-text">Experienced fertility specialists provide comprehensive care and support throughout your entire treatment journey.</p>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-icon">💎</div>
+                <h3 class="reason-title">Personalized Treatment</h3>
+                <p class="reason-text">Every treatment plan is customized based on detailed diagnostics and your specific fertility factors for maximum effectiveness.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

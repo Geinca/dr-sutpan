@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Flipbook</title>
+    <style>
+        .flipbook-section {
+            font-family: 'Arial', sans-serif;
+            max-width: 1800px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .flipbook-header {
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+        
+        .flipbook-header h2 {
+            color: #2c3e50;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .flipbook-header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .flipbook-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            margin: 30px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .flipbook-iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+            background: white;
+        }
+        
+        .flipbook-footer {
+            margin-top: 20px;
+            padding: 15px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .fullscreen-toggle {
+            margin-top: 20px;
+        }
+        
+        .fullscreen-btn {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .fullscreen-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .flipbook-container {
+                height: 400px;
+            }
+            
+            .flipbook-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="flipbook-section">
+        <!-- <div class="flipbook-header">
+            <h2>Interactive Digital Flipbook</h2>
+            <p>Browse through our publication with this realistic page-flipping experience. Click on the corners to turn pages or use the navigation controls.</p>
+        </div> -->
+        
+        <div class="flipbook-container">
+            <iframe allowfullscreen="allowfullscreen" 
+                    scrolling="no" 
+                    class="flipbook-iframe" 
+                    src="https://heyzine.com/flip-book/a1468b3c2f.html"></iframe>
+        </div>
+        
+        <!-- <div class="fullscreen-toggle">
+            <button class="fullscreen-btn" onclick="toggleFullscreen()">View Fullscreen</button>
+        </div>
+        
+        <div class="flipbook-footer">
+            <p>For best experience, use the fullscreen mode. Works on all modern browsers and mobile devices.</p>
+        </div> -->
+    </section>
+
+    <script>
+        // Fullscreen toggle function
+        function toggleFullscreen() {
+            const iframe = document.querySelector('.flipbook-iframe');
+            
+            if (!document.fullscreenElement) {
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.webkitRequestFullscreen) {
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.msRequestFullscreen) {
+                    iframe.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+        
+        // Listen for fullscreen change to update button text
+        document.addEventListener('fullscreenchange', updateButtonText);
+        document.addEventListener('webkitfullscreenchange', updateButtonText);
+        document.addEventListener('msfullscreenchange', updateButtonText);
+        
+        function updateButtonText() {
+            const btn = document.querySelector('.fullscreen-btn');
+            if (document.fullscreenElement || 
+                document.webkitFullscreenElement || 
+                document.msFullscreenElement) {
+                btn.textContent = 'Exit Fullscreen';
+            } else {
+                btn.textContent = 'View Fullscreen';
+            }
+        }
+    </script>
+</body>
+</html>
